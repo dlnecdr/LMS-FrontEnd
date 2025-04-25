@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
-import { Router, NavigationStart,RouterOutlet } from '@angular/router';
+import { Router, NavigationStart, RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 // import { WebcamOverlayComponent } from './components/webcam-overlay/webcam-overlay.component';
 @Component({
   selector: 'app-root',
+  standalone: true,
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  imports:[RouterOutlet,CommonModule]
+  imports:[RouterOutlet,CommonModule,RouterLink,RouterLinkActive]
 })
 export class AppComponent {
   showBackButton: boolean = false;
@@ -17,9 +18,9 @@ export class AppComponent {
     // Listen to router changes to toggle back button visibility
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
-        // Show Back Button on pages like platform and courses
-        this.showNavbar = event.url !== '/login' && event.url !== '/';
-        this.showBackButton = event.url !== '/login' && event.url !== '/';
+        // Hide navbar and back button on landing page
+        this.showNavbar = event.url !== '/';
+        this.showBackButton = event.url !== '/';
       }
     });
   }
