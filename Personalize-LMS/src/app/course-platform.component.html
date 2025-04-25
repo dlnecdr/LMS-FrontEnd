@@ -1,57 +1,57 @@
-<div class="container-fluid vh-100 mt-3 overflow-hidden">
-  <div class="row h-100">
+<div class="course-platform-container">
+  <div class="course-layout-grid">
     <!-- Course Content -->
-    <div class="col-md-7 h-100 overflow-auto">
-      <div class="card shadow-sm mb-4">
-        <div class="card-body d-flex flex-column">
-          <h2 class="mb-4">{{ topic.title }}</h2>
-          <div class="flex-grow-1 overflow-auto course-content" [innerHTML]="syllabus"></div>
-          <button class="btn btn-primary mt-3" (click)="navigateToQuizPage()">Go to Quiz</button>
+    <div class="course-content-wrapper">
+      <div class="course-lesson-container course-shadow">
+        <div class="course-lesson-header course-text-primary">{{ topic.title }}</div>
+        <div class="course-lesson-body" [innerHTML]="syllabus"></div>
+        <div class="course-lesson-footer">
+          <button class="course-button-primary" (click)="navigateToQuizPage()">Go to Quiz</button>
         </div>
       </div>
     </div>
 
     <!-- Chat Section -->
-    <div class="col-md-5 h-100 overflow-auto">
-      <div class="card shadow-sm  d-flex flex-column">
-        <div class="card-body d-flex flex-column">
-          <h5 class="text-center">Ask Assistant</h5>
-          <div class="chat-box flex-grow-1 my-3 px-2 overflow-auto">
-            <div
-              *ngFor="let message of chatMessages"
-              [ngClass]="{
+    <div class="course-chat-wrapper">
+      <div class="course-chat-container">
+        <div class="course-chat-header course-text-primary text-center">Ask Assistant</div>
+        <div class="course-chat-messages">
+          <div
+            *ngFor="let message of chatMessages"
+            [ngClass]="{
                 'msg-user': message.sender === 'You',
                 'msg-assistant': message.sender === 'Assistant'
-              }"
-              class="chat-message mb-2"
-            >
-              <strong>{{ message.sender }}:</strong> <div [innerHTML]="message.text"></div>
-            </div>
+            }"
+            class="course-chat-message"
+          >
+            <strong>{{ message.sender }}:</strong> <div [innerHTML]="message.text"></div>
           </div>
+        </div>
 
-          <!-- Input Section -->
-          <div class="input-group">
+        <!-- Input Section -->
+        <div class="course-chat-input">
+          <div class="course-input-group">
             <input
               *ngIf="!isVoiceMode"
               type="text"
-              class="form-control"
+              class="course-input-field"
               [(ngModel)]="userMessage"
               placeholder="Type your question..."
               (keyup.enter)="sendMessage()"
             />
-            <button
-              class="btn btn-outline-secondary"
-              (click)="toggleVoiceInput()"
-              [ngClass]="{ 'text-danger': isListening }"
-            >
-              <i class="bi bi-mic"></i> {{ isVoiceMode ? 'Stop Listening' : 'Voice Input' }}
-            </button>
           </div>
-
-          <button class="btn btn-primary mt-2" (click)="sendMessage()" [disabled]="isVoiceMode">
-            Send
+          <button
+            class="course-button-secondary"
+            (click)="toggleVoiceInput()"
+              [ngClass]="{ 'text-danger': isListening }"
+          >
+            <i class="bi bi-mic"></i> {{ isVoiceMode ? 'Stop Listening' : 'Voice Input' }}
           </button>
         </div>
+
+          <button class="btn btn-primary mt-2" (click)="sendMessage()" [disabled]="isVoiceMode">
+          Send
+        </button>
       </div>
     </div>
   </div>
