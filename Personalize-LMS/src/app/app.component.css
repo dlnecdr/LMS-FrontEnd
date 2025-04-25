@@ -152,7 +152,8 @@
   
   .social-links {
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
+    margin-top: 1rem;
   }
   
   .social-link {
@@ -161,17 +162,82 @@
     justify-content: center;
     width: 40px;
     height: 40px;
-    background: rgba(128, 0, 128, 0.1);
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 50%;
-    color: #800080;
+    color: #6a007d;
     text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .social-link i {
+    font-size: 1.2rem;
     transition: all 0.3s ease;
   }
   
   .social-link:hover {
-    background: #800080;
-    color: white;
     transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(106, 0, 125, 0.3);
+  }
+  
+  .social-link:hover i {
+    transform: scale(1.2);
+  }
+  
+  /* Social media specific colors */
+  .social-link[href*="facebook"]:hover {
+    background: #1877f2;
+    color: white;
+  }
+  
+  .social-link[href*="instagram"]:hover {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    color: white;
+  }
+  
+  .social-link[href*="linkedin"]:hover {
+    background: #0077b5;
+    color: white;
+  }
+  
+  .social-link[href*="youtube"]:hover {
+    background: #ff0000;
+    color: white;
+  }
+  
+  /* Add a subtle pulse animation on hover */
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  .social-link:hover {
+    animation: pulse 1s infinite;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .social-links {
+      justify-content: center;
+      gap: 1rem;
+    }
+    
+    .social-link {
+      width: 35px;
+      height: 35px;
+    }
+    
+    .social-link i {
+      font-size: 1rem;
+    }
   }
   
   .footer-bottom {
@@ -198,10 +264,6 @@
     .footer-heading {
       margin-left: auto;
       margin-right: auto;
-    }
-    
-    .social-links {
-      justify-content: center;
     }
   }
   
