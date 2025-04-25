@@ -11,12 +11,13 @@ bootstrapApplication(AppComponent, {
   providers: [
     provideHttpClient(),
     provideRouter([
-      { path: '', component: LoginComponent },
+      { path: '/login', component: LoginComponent },
       { path: 'courses', component: CourseSelectionComponent },
       { path: 'course-platform', component: CoursePlatformComponent },
       { path: 'course-platform/:courseId', component: CoursePlatformComponent },
       { path: 'quiz/:courseId', component: QuizComponent },
-      { path: 'landing-page', component: LandingPageComponent },
+      { path: '', component: LandingPageComponent },
+
 
     ])
   ]
