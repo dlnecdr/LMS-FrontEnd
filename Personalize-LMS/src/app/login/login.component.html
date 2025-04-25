@@ -1,0 +1,148 @@
+<!-- Login & Register Form Layout -->
+<router-outlet></router-outlet>
+
+<div class="login-container d-flex align-items-center justify-content-center vh-100">
+  <div class="card shadow-lg login-card p-4" style="width: 100%; max-width: 400px;">
+    <h4 class="text-center mb-4">{{ isRegister ? 'Register' : 'Welcome to Personalize LMS' }}</h4>
+
+    <!-- Toggle between Login and Register -->
+    <div *ngIf="!isRegister">
+      <!-- Login Form -->
+      <form (submit)="onLogin(); $event.preventDefault()" #loginForm="ngForm">
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input
+            type="text"
+            id="username"
+            class="form-control"
+            [(ngModel)]="username"
+            name="username"
+            placeholder="Enter your username"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="password"
+            id="password"
+            class="form-control"
+            [(ngModel)]="password"
+            name="password"
+            placeholder="Enter your password"
+            required
+          />
+        </div>
+
+        <button class="btn btn-primary w-100 mt-3" type="submit" [disabled]="!loginForm.form.valid || isSubmitting">
+          <span *ngIf="!isSubmitting">Login</span>
+          <span *ngIf="isSubmitting" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        </button>
+      </form>
+
+      <div class="text-center mt-3">
+        <a href="javascript:void(0)" (click)="switchToRegister()">Don't have an account? Register</a>
+      </div>
+    </div>
+
+    <!-- Register Form -->
+    <div *ngIf="isRegister">
+      <form (submit)="onRegister(); $event.preventDefault()" #registerForm="ngForm">
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input
+            type="text"
+            id="username"
+            class="form-control"
+            [(ngModel)]="username"
+            name="username"
+            placeholder="Enter your username"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input
+            type="email"
+            id="email"
+            class="form-control"
+            [(ngModel)]="email"
+            name="email"
+            placeholder="Enter your email"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="mobile" class="form-label">Mobile No</label>
+          <input
+            type="tel"
+            id="mobile"
+            class="form-control"
+            [(ngModel)]="mobile"
+            name="mobile"
+            placeholder="Enter your mobile number"
+            required
+            pattern="^\d{10}$"
+            title="Mobile number should be 10 digits."
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="interest" class="form-label">What would you like to learn?</label>
+          <select
+            id="interest"
+            class="form-select"
+            [(ngModel)]="interest"
+            name="interest"
+            required
+          >
+            <option value="" disabled selected>Select your area of interest</option>
+            <option value="c#">C#</option>
+            <option value="web-development">Web Development</option>
+            <option value="data-science">Data Science</option>
+            <option value="ai-ml">AI/ML</option>
+            <option value="cloud-computing">Cloud Computing</option>
+          </select>
+        </div>
+
+        <button class="btn btn-primary w-100 mt-3" type="submit" [disabled]="!registerForm.form.valid || isSubmitting">
+          <span *ngIf="!isSubmitting">Register</span>
+          <span *ngIf="isSubmitting" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        </button>
+      </form>
+
+      <div class="text-center mt-3">
+        <a href="javascript:void(0)" (click)="switchToLogin()">Already have an account? Login</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast Notification (Bottom-Right) -->
+<div
+  class="toast-container position-fixed bottom-0 end-0 p-3"
+  style="z-index: 1055"
+>
+  <div
+    *ngIf="showToast"
+    class="toast align-items-center text-white bg-danger border-0 show"
+    role="alert"
+    aria-live="assertive"
+    aria-atomic="true"
+  >
+    <div class="d-flex">
+      <div class="toast-body">
+        {{ errorMessage }}
+      </div>
+      <button
+        type="button"
+        class="btn-close btn-close-white me-2 m-auto"
+        aria-label="Close"
+        (click)="hideToast()"
+      ></button>
+    </div>
+  </div>
+</div>

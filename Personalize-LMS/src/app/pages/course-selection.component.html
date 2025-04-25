@@ -1,0 +1,19 @@
+<div class="container  mt-5">
+  <h2 class="text-center mb-4 fw-bold">Choose Your Course</h2>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div
+      class="col"
+      *ngFor="let course of courseList"
+      (click)="goToCoursePlatform(course.id)"
+    >
+      <div class="card h-100 shadow-sm course-card">
+        <img [src]="course.image" class="card-img-top course-img" alt="Course Image" />
+        <div class="card-body">
+          <h5 class="card-title">{{ course.title }}</h5>
+          <p class="card-text">{{ course.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

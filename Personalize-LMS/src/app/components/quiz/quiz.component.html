@@ -1,0 +1,35 @@
+<div>
+  <div class="card mb-3 mt-3">
+    <div class="card-header">
+      <strong>Q{{ currentQuestionIndex + 1 }}:</strong> {{ quizData[currentQuestionIndex].question }}
+    </div>
+    <div class="card-body">
+      <div *ngFor="let option of quizData[currentQuestionIndex].options" class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          [name]="'q' + currentQuestionIndex"
+          [value]="option"
+          [(ngModel)]="userAnswers[currentQuestionIndex]"
+        />
+        <label class="form-check-label">
+          {{ option }}
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-between">
+    <button class="btn btn-secondary" (click)="previousQuestion()" [disabled]="currentQuestionIndex === 0">
+      Previous
+    </button>
+    <button class="btn btn-secondary" (click)="nextQuestion()" [disabled]="currentQuestionIndex === quizData.length - 1">
+      Next
+    </button>
+  </div>
+
+  <div class="text-center mt-3" *ngIf="currentQuestionIndex === quizData.length - 1">
+    <button class="btn btn-success" (click)="submitQuiz()">Submit Quiz</button>
+  </div>
+</div>
+<router-outlet>

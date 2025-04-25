@@ -1,0 +1,27 @@
+/* Style for the top navbar */
+.navbar {
+    border-bottom: 2px solid #eee;
+    border-radius: 0;
+  }
+  
+  .navbar-nav .nav-item {
+    margin-left: 15px;
+  }
+  
+  .nav-link.active {
+    font-weight: bold;
+    color: #007bff !important;
+  }
+  
+  .navbar-brand {
+    font-weight: bold;
+  }
+  
+  /* Style for Back Button */
+  /* .back-btn-container {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+  } */
+  
