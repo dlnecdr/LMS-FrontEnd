@@ -210,7 +210,6 @@ html, body {
 
 .course-content-section tr:hover {
   background-color: rgba(106, 17, 203, 0.05);
-  transform: translateX(5px);
 }
 
 /* ===== LINKS ===== */
@@ -241,10 +240,6 @@ html, body {
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.course-content-section a:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
-}
 
 /* ===== BLOCKQUOTES ===== */
 .course-content-section blockquote {
@@ -524,7 +519,6 @@ html, body {
 /* Container Hover Effects */
 .course-lesson-container:hover {
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-  transform: translateY(-2px);
 }
 
 /* Content Scrolling */
@@ -670,7 +664,6 @@ html, body {
 }
 
 .course-lesson-body img:hover {
-  transform: scale(1.02);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
@@ -820,7 +813,6 @@ html, body {
 
 .course-button-primary:hover {
   background-color: #2575fc;
-  transform: translateY(-1px);
 }
 
 .course-button-secondary {
@@ -906,4 +898,155 @@ html, body {
 
 .course-rotate {
   animation: rotate 0.3s ease-in-out;
+}
+
+/* ===== LESSON HEADER ===== */
+.course-lesson-header {
+  padding: 2rem;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border-bottom: 2px solid rgba(106, 17, 203, 0.15);
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+.course-lesson-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, #6a11cb, #2575fc);
+  border-radius: 3px;
+}
+
+.course-lesson-header h2 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin-bottom: 2rem;
+  position: relative;
+  padding-left: 2.5rem;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.course-lesson-header h2::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  width: 6px;
+  height: 3.5rem;
+  background: linear-gradient(to bottom, #6a11cb, #2575fc);
+  border-radius: 3px;
+  box-shadow: 0 2px 8px rgba(106, 17, 203, 0.3);
+}
+
+.course-lesson-header p {
+  color: #2d3748;
+  font-size: 1.4rem;
+  line-height: 1.6;
+  margin-bottom: 0;
+  max-width: 900px;
+  font-weight: 500;
+}
+
+.course-lesson-header .course-lesson-meta {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 2px solid rgba(106, 17, 203, 0.15);
+}
+
+.course-lesson-header .course-lesson-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #2d3748;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.course-lesson-header .course-lesson-meta-item i {
+  color: #6a11cb;
+  font-size: 1.3rem;
+}
+
+.course-lesson-header .course-lesson-progress {
+  width: 100%;
+  height: 8px;
+  background: rgba(106, 17, 203, 0.15);
+  border-radius: 4px;
+  margin-top: 2rem;
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.course-lesson-header .course-lesson-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #6a11cb, #2575fc);
+  border-radius: 4px;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(106, 17, 203, 0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .course-lesson-header h2 {
+    font-size: 3rem;
+  }
+
+  .course-lesson-header p {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .course-lesson-header {
+    padding: 2.5rem;
+  }
+
+  .course-lesson-header h2 {
+    font-size: 2.5rem;
+    padding-left: 2rem;
+  }
+
+  .course-lesson-header p {
+    font-size: 1.2rem;
+  }
+
+  .course-lesson-header .course-lesson-meta-item {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .course-lesson-header {
+    padding: 2rem;
+  }
+
+  .course-lesson-header h2 {
+    font-size: 2.25rem;
+    padding-left: 1.75rem;
+  }
+
+  .course-lesson-header p {
+    font-size: 1.1rem;
+  }
+
+  .course-lesson-header .course-lesson-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+
+  .course-lesson-header .course-lesson-meta-item {
+    font-size: 0.95rem;
+  }
 }
