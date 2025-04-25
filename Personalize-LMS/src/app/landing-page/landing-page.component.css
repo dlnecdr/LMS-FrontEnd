@@ -278,14 +278,10 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: 
-    linear-gradient(45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%),
-    linear-gradient(-45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, rgba(255, 255, 255, 0.1) 75%),
-    linear-gradient(-45deg, transparent 75%, rgba(255, 255, 255, 0.1) 75%);
-  background-size: 20px 20px;
-  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
-  opacity: 0.3;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+  opacity: 0.5;
   z-index: 0;
 }
 
@@ -315,11 +311,30 @@
   color: #6e8efb;
   font-size: 1.1rem;
   padding: 1rem 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.cta-section .primary-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: all 0.5s ease;
+}
+
+.cta-section .primary-button:hover::before {
+  left: 100%;
 }
 
 .cta-section .primary-button:hover {
   background-color: rgba(255, 255, 255, 0.9);
   transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* Responsive Design */
