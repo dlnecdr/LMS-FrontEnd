@@ -9,6 +9,7 @@ import { Router, NavigationStart, RouterOutlet, RouterModule } from '@angular/ro
   imports:[RouterOutlet,CommonModule,RouterModule]
 })
 export class AppComponent {
+  title = 'Personalize-LMS';
   showBackButton: boolean = false;
   showNavbar: boolean = true; // Always show navbar
   constructor(private location: Location, private router: Router) {}

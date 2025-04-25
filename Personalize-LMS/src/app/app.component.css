@@ -62,16 +62,18 @@
   
   /* Global Footer Styles */
   .global-footer {
-    background: #000000;
-    color: #fff;
-    padding: 3rem 0 1rem;
-    margin-top: 2rem;
+    background: #fef6f5;
+    color: #333;
+    padding: 0;
+    margin-top: 4rem;
+    position: relative;
+    overflow: hidden;
   }
   
   .footer-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 3rem 2rem;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
@@ -82,23 +84,28 @@
   }
   
   .footer-brand h3 {
-    color: #fff;
+    color: #6a007d;
+    font-size: 1.5rem;
+    font-weight: 600;
     margin-bottom: 1rem;
-    font-size: 1.6rem;
-    font-weight: 700;
+    position: relative;
+    display: inline-block;
+    border-bottom: 2px solid #800080;
+    padding-bottom: 8px;
+    width: fit-content;
   }
   
   .footer-description {
-    color: #bdc3c7;
+    color: #333;
     line-height: 1.6;
     font-size: 1rem;
   }
   
   .footer-heading {
-    color: #fff;
-    margin-bottom: 1rem;
+    color: #6a007d;
     font-size: 1.2rem;
     font-weight: 600;
+    margin-bottom: 1rem;
     padding-bottom: 0.5rem;
     border-bottom: 2px solid #800080;
     width: fit-content;
@@ -115,13 +122,13 @@
   }
   
   .footer-links a {
-    color: #bdc3c7;
+    color: #800080;
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: color 0.3s ease;
   }
   
   .footer-links a:hover {
-    color: #800080;
+    color: #4d014d;
   }
   
   .footer-contact {
@@ -134,12 +141,13 @@
     display: flex;
     align-items: center;
     margin-bottom: 1rem;
-    color: #bdc3c7;
+    color: #333;
   }
   
   .contact-icon {
     margin-right: 0.8rem;
     font-size: 1.2rem;
+    color: #800080;
   }
   
   .social-links {
@@ -153,24 +161,25 @@
     justify-content: center;
     width: 40px;
     height: 40px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(128, 0, 128, 0.1);
     border-radius: 50%;
-    color: #fff;
+    color: #800080;
     text-decoration: none;
     transition: all 0.3s ease;
   }
   
   .social-link:hover {
     background: #800080;
+    color: white;
     transform: translateY(-3px);
   }
   
   .footer-bottom {
+    background-color: #000000;
+    color: #fff;
     text-align: center;
-    margin-top: 2rem;
-    padding-top: 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    color: #bdc3c7;
+    padding: 1rem;
+    font-size: 0.9rem;
   }
   
   /* Responsive Footer */
@@ -178,10 +187,21 @@
     .footer-container {
       grid-template-columns: 1fr;
       gap: 1.5rem;
+      padding: 2rem 1rem;
     }
     
     .footer-section {
       text-align: center;
+    }
+    
+    .footer-brand h3,
+    .footer-heading {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .social-links {
+      justify-content: center;
     }
   }
   
@@ -526,6 +546,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
+    margin-top: 2rem;
   }
   
   .footer-section h3 {
