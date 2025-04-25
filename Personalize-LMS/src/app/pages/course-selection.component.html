@@ -1,16 +1,37 @@
-<div class="container  mt-5">
-  <h2 class="text-center mb-4 fw-bold">Choose Your Course</h2>
-  <div class="row row-cols-1 row-cols-md-3 g-4">
-    <div
-      class="col"
-      *ngFor="let course of courseList"
-      (click)="goToCoursePlatform(course.id)"
-    >
-      <div class="card h-100 shadow-sm course-card">
-        <img [src]="course.image" class="card-img-top course-img" alt="Course Image" />
-        <div class="card-body">
-          <h5 class="card-title">{{ course.title }}</h5>
-          <p class="card-text">{{ course.description }}</p>
+<div class="course-selection-container">
+  <div class="course-selection-header">
+    <h2 class="section-title">Choose Your Course</h2>
+    <p class="section-subtitle">Discover and enroll in courses that match your interests</p>
+  </div>
+
+  <div class="course-grid">
+    <div class="course-card-wrapper" *ngFor="let course of courseList" (click)="goToCoursePlatform(course.id)">
+      <div class="course-card">
+        <div class="course-color-section">
+          <div class="course-overlay">
+            <span class="course-level">{{ course.level }}</span>
+            <span class="course-duration">
+              <i class="fas fa-clock"></i>
+              {{ course.duration }}
+            </span>
+          </div>
+        </div>
+        
+        <div class="course-content">
+          <div class="course-category">{{ course.category }}</div>
+          <h3 class="course-title">{{ course.title }}</h3>
+          <p class="course-description">{{ course.description }}</p>
+          
+          <div class="course-footer">
+            <div class="course-instructor">
+              <img [src]="course.instructorImage" alt="Instructor" class="instructor-image" />
+              <span>{{ course.instructor }}</span>
+            </div>
+            <div class="course-rating">
+              <i class="fas fa-star"></i>
+              <span>{{ course.rating }}</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
