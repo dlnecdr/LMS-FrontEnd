@@ -220,13 +220,13 @@
 }
 
 .feature-card:hover .feature-icon {
-  transform: scale(1.1) rotate(5deg);
+  transform: scale(1) rotate(5deg);
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
 .feature-card:hover .feature-icon::before {
   opacity: 1;
-  transform: scale(1.5);
+  transform: scale(1.2);
 }
 
 .feature-icon i {
@@ -234,7 +234,7 @@
 }
 
 .feature-card:hover .feature-icon i {
-  transform: scale(1.2);
+  transform: scale(1);
   color: white;
 }
 
