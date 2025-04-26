@@ -5,10 +5,11 @@ import { CommonModule } from '@angular/common';
 import { CourceSelectionService } from './services/cource-selection.service';
 import { marked, Marked } from 'marked'; 
 import { RouterOutlet,Router,RouterModule } from '@angular/router';
+import { WebcamMonitorComponent } from './components/webcam-monitor.component/webcam-monitor.component';
 @Component({
   selector: 'app-course-platform',
   standalone: true,
-  imports: [FormsModule, CommonModule,RouterModule],
+  imports: [FormsModule, CommonModule,RouterModule, WebcamMonitorComponent],
   templateUrl: './course-platform.component.html',
   styleUrls: ['./course-platform.component.css'],
 })
