@@ -1,39 +1,53 @@
-<div class="landing-container">
+<div class="landing-page">
   <!-- Hero Section -->
-  <section class="hero-section">
+  <section class="hero">
     <div class="hero-content">
       <h1>Welcome to Personalize LMS</h1>
-      <p class="hero-subtitle">Your personalized learning journey starts here</p>
-      <button class="cta-button" (click)="navigateToLogin()">Get Started</button>
+      <p class="hero-subtitle">Your personalized learning journey starts here. Experience education tailored to your needs.</p>
+      <div class="cta-buttons">
+        <button class="primary-button" (click)="navigateToLogin()">Get Started</button>
+        <button class="secondary-button" (click)="navigateToLogin()">Learn More</button>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="hero-image.jpg" alt="Learning Management System">
     </div>
   </section>
 
   <!-- Features Section -->
-  <section class="features-section">
-    <h2>Why Choose Our Platform?</h2>
+  <section class="features">
+    <h2>Why Choose Our LMS?</h2>
     <div class="features-grid">
       <div class="feature-card">
-        <div class="feature-icon">📚</div>
-        <h3>Comprehensive Courses</h3>
-        <p>Access a wide range of courses tailored to your learning needs</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🎯</div>
+        <div class="feature-icon">
+          <i class="fas fa-graduation-cap"></i>
+        </div>
         <h3>Personalized Learning</h3>
-        <p>Experience learning paths designed just for you</p>
+        <p>Experience learning paths designed specifically for your goals and learning style.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">📊</div>
+        <div class="feature-icon">
+          <i class="fas fa-chart-line"></i>
+        </div>
         <h3>Progress Tracking</h3>
-        <p>Monitor your learning journey with detailed analytics</p>
+        <p>Monitor your learning journey with detailed analytics and performance metrics.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-users"></i>
+        </div>
+        <h3>Collaborative Learning</h3>
+        <p>Connect with peers, share knowledge, and learn together in an engaging environment.</p>
       </div>
     </div>
   </section>
 
   <!-- Call to Action Section -->
   <section class="cta-section">
-    <h2>Ready to Start Learning?</h2>
-    <p>Join thousands of learners who have transformed their skills with our platform</p>
-    <button class="cta-button" (click)="navigateToLogin()">Begin Your Journey</button>
+    <div class="cta-content">
+      <h2>Ready to Transform Your Learning Experience?</h2>
+      <p>Join thousands of learners who have enhanced their skills with our platform. Start your journey today!</p>
+      <button class="primary-button" (click)="navigateToLogin()">Get Started Now</button>
+    </div>
   </section>
 </div>

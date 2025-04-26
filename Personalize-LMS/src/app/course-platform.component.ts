@@ -14,13 +14,15 @@ import { WebcamMonitorComponent } from './components/webcam-monitor.component/we
   styleUrls: ['./course-platform.component.css'],
 })
 export class CoursePlatformComponent {
-  topic: any = {}; // Holds the course content
+  topic: any = {};
   userMessage: string = '';
   chatMessages: any[] = [];
   isVoiceMode: boolean = false;
   isListening: boolean = false;
-  syllabus:string| Promise<string>="";
-  constructor(private route: ActivatedRoute, private ser: CourceSelectionService,private router: Router) {}
+  syllabus: string | Promise<string> = '';
+  assistanceMode: 'text' | 'voice' = 'text'; // Added toggle mode
+
+  constructor(private route: ActivatedRoute, private ser: CourceSelectionService, private router: Router) {}
 
   ngOnInit(): void {
     const courseId = Number(this.route.snapshot.paramMap.get('courseId'));
@@ -32,38 +34,66 @@ export class CoursePlatformComponent {
     this.topic = courses.find(course => course.id === courseId) || {};
     const topicData = localStorage.getItem(this.topic.title);
 
-      // const userData = localStorage.getItem('UserData');
-      // const user = userData ? JSON.parse(userData) : null;
-    if(topicData !=null ){
+    if (topicData != null) {
       this.syllabus = marked(JSON.parse(topicData));
-    }
-    else{
+    } else {
       this.GetSyllabusByCourse(this.topic.title + this.topic.description);
     }
-    
-
   }
 
-  GetSyllabusByCourse(CourseName:string){
-
-     this.ser.GetMoreInfoRelatedToTopic(CourseName).subscribe({
-      next:(res)=>{
-      localStorage.setItem(this.topic.title, JSON.stringify(res.syllabus));
-      this.syllabus = marked(res.syllabus)
-
+  GetSyllabusByCourse(CourseName: string) {
+    this.ser.GetMoreInfoRelatedToTopic(CourseName).subscribe({
+      next: (res) => {
+        localStorage.setItem(this.topic.title, JSON.stringify(res.syllabus));
+        this.syllabus = marked(res.syllabus);
       },
-      error:(err)=>{
-
+      error: (err) => {
+        console.error(err);
       }
-     })
+    });
   }
 
   sendMessage() {
     if (this.userMessage.trim()) {
       this.chatMessages.push({ sender: 'You', text: this.userMessage });
-    //  this.userMessage = '';
       this.getAssistantResponse();
     }
+  }
+
+  getAssistantResponse() {
+    if(this.assistanceMode === 'text'){
+      this.ser.GetMoreInfoRelatedToTopic(this.userMessage).subscribe({
+        next: (res) => {
+          if (this.assistanceMode === 'text') {
+            this.chatMessages.push({ sender: 'Assistant', text: marked(res.syllabus) });
+          } else {
+            this.chatMessages.push({ sender: 'Assistant', text: this.userMessage }); // show input as text
+            
+          }
+          this.userMessage = '';
+        },
+        error: (err) => {
+          console.error('Error getting assistant response:', err);
+        }
+      });
+    }
+   if(this.assistanceMode === 'voice'){
+    this.playTextToSpeech(this.userMessage);
+    this.userMessage='';
+   }
+  }
+
+  playTextToSpeech(text: string) {
+    this.ser.getSpeechFromText(text).subscribe({
+      next: (audioBlob) => {
+        const audioUrl = URL.createObjectURL(audioBlob);
+        const audio = new Audio(audioUrl);
+        audio.play();
+      },
+      error: (err) => {
+        console.error('TTS error:', err);
+      }
+    });
   }
 
   toggleVoiceInput() {
@@ -101,18 +131,7 @@ export class CoursePlatformComponent {
     recognition.start();
   }
 
-  getAssistantResponse() {
-    this.ser.GetMoreInfoRelatedToTopic(this.userMessage).subscribe({
-      next:(res)=>{
-        this.chatMessages.push({ sender: 'Assistant', text: marked(res.syllabus) });
-          this.userMessage = '';
-      },
-      error:(err)=>{
-
-      }
-     })
-  }
   navigateToQuizPage() {
-    this.router.navigate(['/quiz',this.topic.id]); // Or use your actual route and parameters
+    this.router.navigate(['/quiz', this.topic.id]);
   }
 }

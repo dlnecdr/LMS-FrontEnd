@@ -25,30 +25,27 @@ export class CourseSelectionComponent implements OnInit {
     const UserData = localStorage.getItem('UserData');
     const UserProfile = localStorage.getItem('UserProfile');
     if (storedCourseList != null || storedCourseList != undefined) {
-      // If data exists in localStorage, parse and use it
+
       this.courseList = JSON.parse(storedCourseList);
+      const user = UserData ? JSON.parse(UserData) : null;
 
+      const formattedCourses = this.courseList.map((course: any) => ({
+        userId: user.id,  
+        title: course.title,
+        courseName: course.title,
+        description: course.description,
+        imageUrl: course.image,
+        quizScore: 0
+      }));
 
-
-      // const formattedCourses = this.courseList.map((course: any) => ({
-      //   userId: 3,  // assuming `id` is present in UserData
-      //   title: course.title,
-      //   courseName: course.title,
-      //   description: course.description,
-      //   imageUrl: course.image,
-      //   quizScore: 0
-      // }));
-
-      // this.courseSelection.submitCourses(formattedCourses).subscribe({
-      //   next: (response) => {
-      //     console.log('Courses submitted successfully', response);
-      //   },
-      //   error: (error) => {
-      //     console.error('Error submitting courses', error);
-      //   }
-      // });
-
-
+      this.courseSelection.submitCourses(formattedCourses).subscribe({
+        next: (response) => {
+          console.log('Courses submitted successfully', response);
+        },
+        error: (error) => {
+          console.error('Error submitting courses', error);
+        }
+      });
     } 
     else {
       if(UserData !=null || UserData != undefined){

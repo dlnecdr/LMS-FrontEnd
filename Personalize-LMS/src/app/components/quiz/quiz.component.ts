@@ -59,7 +59,7 @@ currentQuestionIndex: number = 0;
     const user = userData ? JSON.parse(userData) : null;
 
     
-      this.quizService.updateQuizScore(this.topic.title, 3,score).subscribe({
+      this.quizService.updateQuizScore(this.topic.title, user.id,score).subscribe({
         next: (res) => {
           console.log('Quiz score updated successfully', res);
         },
@@ -71,6 +71,9 @@ currentQuestionIndex: number = 0;
       if(score< this.quizData.length-1){
          alert("You have Scored too less you have to learn more");
          this.router.navigate(['/course-platform/',this.topic.id])
+      }
+      else{
+        this.router.navigate(['/course-platform/',this.topic.id+1])
       }
     
   }
