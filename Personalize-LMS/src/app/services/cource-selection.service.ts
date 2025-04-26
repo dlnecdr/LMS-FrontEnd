@@ -21,7 +21,6 @@ export class CourceSelectionService {
   }
   GetMoreInfoRelatedToTopic(courseName: string): Observable<any> {
     return this.http.post(this.apiUrl +"MoreInfo", JSON.stringify(courseName), {
-      
       headers: {
         'Content-Type': 'application/json'
       }
@@ -40,4 +39,11 @@ export class CourceSelectionService {
       }
     });
   }
+  getSpeechFromText(text: string): Observable<Blob> {
+    return this.http.get('https://localhost:7058/api/TTS/TextToVoice', {
+      params: { text },
+      responseType: 'blob' // Important to get binary audio data
+    });
+  }
+  
 }

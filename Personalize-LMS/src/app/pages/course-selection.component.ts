@@ -23,37 +23,33 @@ export class CourseSelectionComponent implements OnInit {
     const storedCourseList = localStorage.getItem('courseList');
     const UserData = localStorage.getItem('UserData');
     if (storedCourseList != null || storedCourseList != undefined) {
-      // If data exists in localStorage, parse and use it
+
       this.courseList = JSON.parse(storedCourseList);
+      const user = UserData ? JSON.parse(UserData) : null;
 
+      const formattedCourses = this.courseList.map((course: any) => ({
+        userId: user.id,  
+        title: course.title,
+        courseName: course.title,
+        description: course.description,
+        imageUrl: course.image,
+        quizScore: 0
+      }));
 
-
-      // const formattedCourses = this.courseList.map((course: any) => ({
-      //   userId: 3,  // assuming `id` is present in UserData
-      //   title: course.title,
-      //   courseName: course.title,
-      //   description: course.description,
-      //   imageUrl: course.image,
-      //   quizScore: 0
-      // }));
-
-      // this.courseSelection.submitCourses(formattedCourses).subscribe({
-      //   next: (response) => {
-      //     console.log('Courses submitted successfully', response);
-      //   },
-      //   error: (error) => {
-      //     console.error('Error submitting courses', error);
-      //   }
-      // });
-
-
+      this.courseSelection.submitCourses(formattedCourses).subscribe({
+        next: (response) => {
+          console.log('Courses submitted successfully', response);
+        },
+        error: (error) => {
+          console.error('Error submitting courses', error);
+        }
+      });
     } 
     else {
       if(UserData !=null || UserData != undefined){
         this.user=JSON.parse(UserData);  
       }
       
-      // If no data in localStorage, make the API call
       const prompt = `Return a list of courses related to "${this.user.areaOfIntrest}" strictly in the exact following JSON format. Do not include any extra text, explanations, or variations. Any deviation from this format will cause the application to break. Ensure each "image" value is a valid image URL.
 
       [

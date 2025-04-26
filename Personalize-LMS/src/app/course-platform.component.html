@@ -13,9 +13,23 @@
 
     <!-- Chat Section -->
     <div class="col-md-5 h-100 overflow-auto">
-      <div class="card shadow-sm  d-flex flex-column">
+      <div class="card shadow-sm d-flex flex-column">
         <div class="card-body d-flex flex-column">
           <h5 class="text-center">Ask Assistant</h5>
+
+          <!-- Assistance Mode Toggle -->
+          <div class="d-flex justify-content-center my-2 gap-3">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="assistanceMode" id="textMode" value="text" [(ngModel)]="assistanceMode" />
+              <label class="form-check-label" for="textMode">Text Assistance</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="assistanceMode" id="voiceMode" value="voice" [(ngModel)]="assistanceMode" />
+              <label class="form-check-label" for="voiceMode">Voice Assistance</label>
+            </div>
+          </div>
+
+          <!-- Chat Box -->
           <div class="chat-box flex-grow-1 my-3 px-2 overflow-auto">
             <div
               *ngFor="let message of chatMessages"
@@ -25,32 +39,32 @@
               }"
               class="chat-message mb-2"
             >
-              <strong>{{ message.sender }}:</strong> <div [innerHTML]="message.text"></div>
+              <strong>{{ message.sender }}:</strong>
+              <div [innerHTML]="message.text"></div>
             </div>
           </div>
 
           <!-- Input Section -->
           <div class="input-group">
             <input
-              *ngIf="!isVoiceMode"
+             
               type="text"
               class="form-control"
               [(ngModel)]="userMessage"
               placeholder="Type your question..."
               (keyup.enter)="sendMessage()"
             />
-            <button
+            <!-- <button
               class="btn btn-outline-secondary"
               (click)="toggleVoiceInput()"
               [ngClass]="{ 'text-danger': isListening }"
+              *ngIf="assistanceMode === 'text'"
             >
               <i class="bi bi-mic"></i> {{ isVoiceMode ? 'Stop Listening' : 'Voice Input' }}
-            </button>
+            </button> -->
           </div>
 
-          <button class="btn btn-primary mt-2" (click)="sendMessage()" [disabled]="isVoiceMode">
-            Send
-          </button>
+          <button class="btn btn-primary mt-2" (click)="sendMessage()">Send</button>
         </div>
       </div>
     </div>
